@@ -51,8 +51,7 @@ var KTLogin = function() {
 
         $('#kt_login_signin_submit').on('click', function (e) {
 			e.preventDefault();
-			console.log("your button has been clicked");
-
+		
             validation.validate().then(function(status) {
 				if (status == 'Valid') {
 					var phone = $("input[name='phone']").val();

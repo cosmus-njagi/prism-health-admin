@@ -5,30 +5,38 @@ $("document").ready(() => {
         e.preventDefault();
         uploadProduct();
 	})
+	document.querySelector('#product_images_upload').addEventListener('change', event => {
+		handleImageUpload(event);
+	})
 });
 var $add_product = $("#add_product");
 let token= window.sessionStorage.getItem("token")
 console.log(token)
-document.querySelector('#product_images_upload').addEventListener('change', event => {
-    handleImageUpload(event);
-})
 var imageUris=[];
+
 const handleImageUpload = event => {
     const files = event.target.files
-    const formData = new FormData()
-    formData.append('file', files[0])
-	
-    fetch("http://172.105.167.182:8081/files/upload", {
-		method: 'POST',
-		body: formData
-	})
-    .then(response => response.json())
-    .then(data => {
-		imageUris.push(data.uri)
-	})
-    .catch(error => {
-		console.error(error)
-	})
+    const formData = new FormData();
+    for (var i = 0; i < files.length; i++) {
+        formData.append('file', files[i])
+        fetch("http://172.105.167.182:8081/files/upload", {
+            method: 'POST',
+            headers:{
+                "Authorization":'Bearer '+token
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.uri)
+            imageUris.push(data.uri)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
+    }
+   
 }
 
 var loadSubCategories=()=>{
@@ -48,6 +56,9 @@ var loadSubCategories=()=>{
     })
 
 }
+var loadProducts=()=>{
+    
+}
 
 var uploadProduct=()=>{ 
 	let url = "http://172.105.167.182:8081/catalog/products"
@@ -58,21 +69,23 @@ var uploadProduct=()=>{
     var productDescription = document.getElementById("productDescriptiom").value;
     var subCategory = document.getElementById("pSubCategory").value;
     var productProvider = $("input[name='productProvider']").val();
+    var latitude=document.getElementById("prLat").value;
+    var longitude=document.getElementById("prLong").value;
+    var position=[latitude,longitude] 
     console.log(imageUris)
-    var boo= JSON.stringify({productQuantity: productQuantity, productName: productName,
+    var body= JSON.stringify({productQuantity: productQuantity, productName: productName,
         productPrice: productPrice, productDescription: productDescription, photos: imageUris, subCategory: subCategory,
-        productProvider: productProvider, productVariant: productVariant
+        productProvider: productProvider, productVariant: productVariant,position:position
     })
          
-    console.log(boo);
+   
 	fetch(url,{
 		method:'post',
 		headers: {
             'Authorization': 'Bearer ' +token,
-
 			'Content-Type': 'application/json'
 		},
-		body:boo
+		body:body
 	})
 	.then(res=>{
 		if (res.ok) {

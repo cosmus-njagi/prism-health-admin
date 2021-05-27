@@ -7,9 +7,9 @@ var KTWidgets = function() {
     // Private functions
 
     // handle form request
-    $('#add_provider').on('click', function (e) {
+    $('#add_providers').on('click', function (e) {
 			e.preventDefault();
-			console.log("your button has been clicked");
+			// console.log("your button has been clicked");
 
             validation.validate().then(function(status) {
 				if (status == 'Valid') {

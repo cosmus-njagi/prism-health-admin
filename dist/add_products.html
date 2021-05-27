@@ -148,8 +148,7 @@
 										<span class="menu-text">Dashboard</span>
 									</a>
 								</li>
-								</li>
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="javascript:;" class="menu-link menu-toggle">
                                     <span class="svg-icon menu-icon">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -320,7 +319,7 @@
                         
                                     </ul>
                                 </div>
-								</li>
+                            </li>
 								<li class="menu-section">
 									<h4 class="menu-text">Providers</h4>
 									<i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -568,17 +567,6 @@
 															<input type="text" name="productVariant" id="productVariant" class="form-control" placeholder="product variant" required>
 														</div>
 													</div>
-
-							
-                                                    <!-- <div class="form-group row">
-														<label class="col-lg-3 col-form-label">Category:</label>
-														<div class="col-lg-3">
-															<select class="form-control" id="pCategory" >
-															    
-															</select>
-															
-														</div>
-													</div> -->
 													<div  class="form-group row">
 														<label class="col-lg-3 col-form-label">Sub Category:</label>
 														<div class="col-lg-3">
@@ -621,7 +609,7 @@
 															<input type="text" name="productProvider" class="form-control" placeholder="Enter provider phone" required>
 														</div>
 													</div>
-													<h3 class="font-size-lg text-dark text-center font-weight-bold mb-6 mt-5">Service Provider location</h3>
+													<h3 class="font-size-lg text-dark text-center font-weight-bold mb-6 mt-5">Product Provider location</h3>
 												    <hr>
 													<div id="map"></div>
 													<script>
@@ -652,8 +640,8 @@
 															infoWindow.open(map);
 															var latitude = mapsMouseEvent.latLng.lat();
 															var longitude = mapsMouseEvent.latLng.lng();
-															document.getElementById('pLatitude').value=`${latitude}`; 
-															document.getElementById('pLongitude').value=`${longitude}` ;
+															document.getElementById('prLat').value=`${latitude}`; 
+															document.getElementById('prLong').value=`${longitude}` ;
 															});
 														}
 													</script>
@@ -662,6 +650,19 @@
 												async
 												></script>
 												</div>
+												<div class="form-group row mt-5">
+													<label class="col-lg-3 col-form-label">Latitude</label>
+													<div class="col-lg-6">
+														<input type="text" id="prLat" class="form-control" placeholder="Selected Latitude" readonly required>
+													</div>
+												</div>
+												<div class="form-group row mt-5">
+													<label class="col-lg-3 col-form-label">Longitude</label>
+													<div class="col-lg-6">
+														<input type="text" id="prLong" class="form-control" placeholder="Selected Longitude" readonly required>
+													</div>
+												</div>
+				
 											</div>
 											<div class="card-footer">
 												<div class="row">
